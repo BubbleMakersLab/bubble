@@ -1,6 +1,7 @@
 import openSocket from "socket.io-client";
 
-const socket = openSocket("http://localhost:8000");
+console.log(process.env.REACT_APP_SERVER_URI);
+const socket = openSocket(process.env.REACT_APP_SERVER_URI);
 
 function subscribeToTimer(cb) {
   socket.on("timer", timestamp => cb(null, timestamp));
