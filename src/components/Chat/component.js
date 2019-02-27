@@ -9,7 +9,7 @@ import React from "react";
 
 import { any, objectOf, string } from "prop-types";
 
-import { receiveChatMessage, sendChatMessage } from "../../api/index";
+import { getChatHistory, receiveChatMessage, receiveHistory, sendChatMessage } from "../../api";
 
 export default class Chat extends React.Component {
   static propTypes = {
@@ -38,6 +38,16 @@ export default class Chat extends React.Component {
         chatMessages: [...chatMessages, chatMessage]
       }));
     });
+
+    receiveHistory((err, chatMessages) => {
+      this.setState(() => ({
+        chatMessages
+      }));
+    });
+  }
+
+  componentDidMount() {
+    getChatHistory();
   }
 
   handleClick = () => {
