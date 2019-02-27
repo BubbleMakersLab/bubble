@@ -31,6 +31,12 @@ export default class Login extends React.Component {
     }
   };
 
+  handleKeyPress = e => {
+    if (e.key === "Enter") {
+      this.handleClick();
+    }
+  };
+
   render() {
     const { classes } = this.props;
     const { redirect, username } = this.state;
@@ -45,7 +51,7 @@ export default class Login extends React.Component {
           Login
         </Typography>
         <div>
-          <Input type="text" onChange={this.handleChange} />
+          <Input type="text" onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
           <Button className={classes.loginButton} variant="contained" onClick={this.handleClick}>
             Go!
           </Button>

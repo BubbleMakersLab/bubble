@@ -47,10 +47,18 @@ export default class Chat extends React.Component {
       username,
       message: chatInput
     });
+
+    this.setState({ chatInput: "" });
   };
 
   handleChange = e => {
     this.setState({ chatInput: e.target.value });
+  };
+
+  handleKeyPress = e => {
+    if (e.key === "Enter") {
+      this.handleClick();
+    }
   };
 
   static renderChatMessage(chatMessage) {
@@ -63,7 +71,7 @@ export default class Chat extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { chatMessages } = this.state;
+    const { chatMessages, chatInput } = this.state;
 
     return (
       <div className={classes.chat}>
@@ -71,7 +79,13 @@ export default class Chat extends React.Component {
           <ul className={classes.chatMessages}>{map(Chat.renderChatMessage, chatMessages)}</ul>
         </div>
         <Paper className={classes.chatBar} elevation={1}>
-          <Input className={classes.chatInput} type="text" onChange={this.handleChange} />
+          <Input
+            className={classes.chatInput}
+            value={chatInput}
+            type="text"
+            onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
+          />
           <Button className={classes.sendButton} variant="contained" onClick={this.handleClick}>
             <SendIcon className={classes.sendIcon} />
             Send
