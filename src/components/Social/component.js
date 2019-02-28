@@ -47,9 +47,9 @@ export default class Social extends React.Component {
       <div className={classes.social}>
         <div className={classes.socialCardGroupContainer}>
           <SocialCardGroup>
-            <SocialCard name="Messenger" icon={messengerIcon} />
+            <SocialCard name="Messenger" icon={messengerIcon} link="https://www.facebook.com/Bubble-345045039437787/" />
             <SocialCard name="WhatsApp" icon={whatsAppIcon} />
-            <SocialCard name="Telegram" icon={telegramIcon} />
+            <SocialCard name="Telegram" icon={telegramIcon} link="http://t.me/Bubblemakerlabs_bot" />
             <SocialCard name="WeChat" icon={wechatIcon} />
           </SocialCardGroup>
           <SocialCardGroup>

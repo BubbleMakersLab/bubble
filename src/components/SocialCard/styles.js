@@ -17,5 +17,8 @@ export default theme => ({
   },
   iconImage: {
     marginBottom: "20px"
+  },
+  link: {
+    color: "white"
   }
 });
