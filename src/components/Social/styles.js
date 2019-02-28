@@ -31,8 +31,8 @@ export default theme => ({
     width: "100%",
     justifyContent: "flex-end",
     marginRight: "200px",
-    marginTop: "60px",
-    marginBottom: "60px",
+    marginTop: "30px",
+    marginBottom: "30px",
     alignItems: "center",
     marginLeft: "20px"
   },
