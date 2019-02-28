@@ -1,15 +1,18 @@
+import { any, objectOf, string } from "prop-types";
 import { map, pathOr } from "ramda";
 import { parse } from "query-string";
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
 import Paper from "@material-ui/core/Paper";
+import React from "react";
 import SendIcon from "@material-ui/icons/Send";
 
-import React from "react";
-
-import { any, objectOf, string } from "prop-types";
-
 import { getChatHistory, receiveChatMessage, receiveHistory, sendChatMessage } from "../../api";
+import telegrapIcon from "../../assets/telegram.png";
+
+const applicationIcon = {
+  telegram: telegrapIcon
+};
 
 export default class Chat extends React.Component {
   static propTypes = {
@@ -71,10 +74,13 @@ export default class Chat extends React.Component {
     }
   };
 
-  static renderChatMessage(chatMessage) {
+  static renderChatMessage({ message, username, application }) {
+    const iconApplication = application && <img src={applicationIcon[application]} alt={application} className="icon" />;
+
     return (
       <li>
-        [{chatMessage.username}]: {chatMessage.message}
+        [{iconApplication}
+        {username}]: {message}
       </li>
     );
   }
