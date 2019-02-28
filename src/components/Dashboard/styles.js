@@ -67,5 +67,8 @@ export default theme => ({
   },
   avatar: {
     backgroundColor: red[500]
+  },
+  chatCardContent: {
+    height: "500px"
   }
 });

@@ -1,9 +1,7 @@
-import { any, objectOf, string } from "prop-types";
-import { map, pathOr } from "ramda";
-import { parse } from "query-string";
+import { map } from "ramda";
+import { objectOf, string } from "prop-types";
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
-import Paper from "@material-ui/core/Paper";
 import React from "react";
 import SendIcon from "@material-ui/icons/Send";
 
@@ -19,23 +17,21 @@ const applicationIcon = {
 export default class Chat extends React.Component {
   static propTypes = {
     classes: objectOf(string),
-    location: objectOf(any)
+    username: string
   };
 
   static defaultProps = {
     classes: {},
-    location: {}
+    username: "Anonymous"
   };
 
   constructor(props) {
     super(props);
 
-    const parsed = parse(props.location.search);
-
     this.state = {
       chatMessages: [],
       chatInput: "",
-      username: pathOr("Anonymous", ["username"], parsed)
+      username: props.username
     };
 
     receiveChatMessage((err, chatMessage) => {
@@ -96,19 +92,19 @@ export default class Chat extends React.Component {
         <div className={classes.chatMessagesContainer}>
           <ul className={classes.chatMessages}>{map(Chat.renderChatMessage, chatMessages)}</ul>
         </div>
-        <Paper className={classes.chatBar} elevation={1}>
+        <div className={classes.chatBar}>
           <Input
             className={classes.chatInput}
             value={chatInput}
             type="text"
             onChange={this.handleChange}
             onKeyPress={this.handleKeyPress}
+            placeholder="Envoyer un message"
           />
           <Button className={classes.sendButton} variant="contained" onClick={this.handleClick}>
             <SendIcon className={classes.sendIcon} />
-            Send
           </Button>
-        </Paper>
+        </div>
       </div>
     );
   }

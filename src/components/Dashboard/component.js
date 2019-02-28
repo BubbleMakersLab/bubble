@@ -1,17 +1,11 @@
-import { withStyles } from "@material-ui/core/styles";
-
-import React from "react";
 import AppBar from "@material-ui/core/AppBar";
-import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
+import CardHeader from "@material-ui/core/CardHeader";
+import ChatIcon from "@material-ui/icons/Chat";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import Hidden from "@material-ui/core/Hidden";
@@ -24,15 +18,40 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import ShareIcon from "@material-ui/icons/Share";
-import tileData from "./tileData";
+import React from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
+import { any, objectOf, string } from "prop-types";
+import { parse } from "query-string";
+import { pathOr } from "ramda";
+
+import Chat from "../Chat";
+import tileData from "./tileData";
+
 export default class Dashboard extends React.Component {
-  state = {
-    mobileOpen: false
+  static propTypes = {
+    classes: objectOf(string),
+    location: objectOf(any),
+    theme: objectOf(any)
   };
+
+  static defaultProps = {
+    classes: {},
+    location: {},
+    theme: {}
+  };
+
+  constructor(props) {
+    super(props);
+
+    const parsed = parse(props.location.search);
+
+    this.state = {
+      username: pathOr("Anonymous", ["username"], parsed),
+      mobileOpen: false
+    };
+  }
 
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
@@ -40,6 +59,7 @@ export default class Dashboard extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
+    const { username } = this.state;
 
     const drawer = (
       <div>
@@ -82,7 +102,6 @@ export default class Dashboard extends React.Component {
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Hidden smUp implementation="css">
             <Drawer
-              container={this.props.container}
               variant="temporary"
               anchor={theme.direction === "rtl" ? "right" : "left"}
               open={this.state.mobileOpen}
@@ -108,33 +127,18 @@ export default class Dashboard extends React.Component {
         </nav>
         <main className={classes.content}>
           <Card className={classes.card}>
-            <CardHeader avatar={
-                <Avatar aria-label="Recipe" className={classes.avatar}>
-                  R
-                </Avatar>
-              }
+            <CardHeader
+              avatar={<ChatIcon />}
               action={
                 <IconButton>
                   <MoreVertIcon />
                 </IconButton>
               }
-              title="Shrimp and Chorizo Paella"
-              subheader="September 14, 2016"
+              title="Messagerie instantanée"
             />
-            <CardMedia className={classes.media} image="/static/images/cards/paella.jpg" title="Paella dish"/>
-            <CardContent>
-              <Typography component="p">
-                This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.
-              </Typography>
+            <CardContent className={classes.chatCardContent}>
+              <Chat username={username} />
             </CardContent>
-            <CardActions className={classes.actions} disableActionSpacing>
-              <IconButton aria-label="Add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="Share">
-                <ShareIcon />
-              </IconButton>
-            </CardActions>
           </Card>
           <div className={classes.rootGridList}>
             <GridList cellHeight={340} className={classes.gridList} cols={3}>

@@ -1,20 +1,23 @@
 export default theme => ({
   chat: {
-    height: "100vh",
+    height: "100%",
     display: "flex",
     flexWrap: "wrap",
     overflow: "auto"
   },
   chatMessages: {
-    listStyle: "none"
+    listStyle: "none",
+    margin: "0",
+    overflow: "auto",
+    height: "100%"
   },
   chatMessagesContainer: {
     width: "100%",
-    height: "90vh"
+    height: "90%"
   },
   chatBar: {
     width: "100%",
-    height: "10vh",
+    height: "10%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
@@ -24,8 +27,5 @@ export default theme => ({
   },
   sendButton: {
     marginLeft: theme.spacing.unit
-  },
-  sendIcon: {
-    marginRight: theme.spacing.unit
   }
 });
