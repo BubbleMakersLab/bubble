@@ -8,10 +8,12 @@ import React from "react";
 import SendIcon from "@material-ui/icons/Send";
 
 import { getChatHistory, receiveChatMessage, receiveHistory, sendChatMessage } from "../../api";
+import facebookIcon from "../../assets/facebook.png";
 import telegrapIcon from "../../assets/telegram.png";
 
 const applicationIcon = {
-  telegram: telegrapIcon
+  telegram: telegrapIcon,
+  facebook: facebookIcon
 };
 
 export default class Chat extends React.Component {
