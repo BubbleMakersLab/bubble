@@ -42,7 +42,7 @@ export default class Login extends React.Component {
     const { redirect, username } = this.state;
 
     if (redirect) {
-      return <Redirect to={`/chat?username=${username}`} />;
+      return <Redirect to={`/dashboard?username=${username}`} />;
     }
 
     return (
