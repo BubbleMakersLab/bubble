@@ -11,7 +11,7 @@ export default theme => ({
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0
-    },
+    }
   },
   appBar: {
     marginLeft: drawerWidth,
@@ -42,8 +42,10 @@ export default theme => ({
     backgroundolor: drawerColor
   },
   content: {
-    marginTop: "75px",
-    display: "block"
+    marginTop: "64px",
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between"
   },
   card: {
     top: 50,
@@ -78,29 +80,28 @@ export default theme => ({
     display: "block"
   },
   divGestion: {
-    width: "880px",
-    height: "890px",
-    display: "inline-block",
-    paddingLeft: "20px"
+    display: "flex",
+    flexWrap: "wrap",
+    paddingLeft: "20px",
+    width: "calc(100% - 400px)"
   },
   gestion: {
-    height: "465px !important",
-    width: "420px",
-    padding: "0 !important",
-    display: "inline-block"
+    height: "570px !important",
+    padding: "0 !important"
   },
   doc: {
-    width: "407px",
+    width: "490px",
     height: "420px",
     padding: 0
   },
   divVisio: {
-    width: "300px",
-    height: "803px",
-    display: "inline-block"
+    position: "fixed",
+    right: 0,
+    top: "64px",
+    marginRight: "-8px"
   },
   visio: {
-    height: 473,
+    height: "100vh",
     padding: 0
   }
 });
