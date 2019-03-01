@@ -119,6 +119,12 @@ export default theme => ({
     maxHeight: "none"
   },
   dialogImage: {
-    width: "800px"
+    width: "1200px"
+  },
+  tuto: {
+    position: "fixed",
+    width: "100vw",
+    zIndex: 1300,
+    height: "100vh"
   }
 });

@@ -11,7 +11,6 @@ import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import React from "react";
@@ -32,6 +31,8 @@ import cardDoc from "../../assets/images/card-doc.png";
 import cardGestion from "../../assets/images/card-gestion.png";
 import cardVisio from "../../assets/images/card-visio.png";
 import tuto1 from "../../assets/tuto1.PNG";
+import tuto2 from "../../assets/tuto2.png";
+import tuto3 from "../../assets/tuto3.png";
 import userOnline1 from "../../assets/images/user1-online.png";
 import userOnline2 from "../../assets/images/user2-online.png";
 import userOnline3 from "../../assets/images/user3-online.png";
@@ -57,7 +58,9 @@ export default class Dashboard extends React.Component {
     this.state = {
       username: pathOr("Anonymous", ["username"], parsed),
       mobileOpen: false,
-      open: true
+      open: true,
+      tuto2open: true,
+      tuto3open: true
     };
   }
 
@@ -69,9 +72,13 @@ export default class Dashboard extends React.Component {
     this.setState(state => ({ open: false }));
   };
 
+  handleCloseTuto = (e, tuto) => {
+    this.setState({ [tuto]: false });
+  };
+
   render() {
     const { classes, theme } = this.props;
-    const { username, open } = this.state;
+    const { username, open, tuto2open, tuto3open } = this.state;
 
     const drawer = (
       <div className={classes.toolbarLeft}>
@@ -96,9 +103,6 @@ export default class Dashboard extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Dialog onClose={this.handleClose} onClick={this.handleClose} open={open} classes={{ paper: classes.dialog }}>
-          <img src={tuto1} className={classes.dialogImage} />
-        </Dialog>
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
@@ -179,6 +183,27 @@ export default class Dashboard extends React.Component {
             <img className={classes.visio} src={cardVisio} alt="card visio" />
           </div>
         </main>
+        {tuto2open && (
+          <img
+            src={tuto2}
+            className={classes.tuto}
+            onClick={e => {
+              this.handleCloseTuto(e, "tuto2open");
+            }}
+          />
+        )}
+        {tuto3open && (
+          <img
+            src={tuto3}
+            className={classes.tuto}
+            onClick={e => {
+              this.handleCloseTuto(e, "tuto3open");
+            }}
+          />
+        )}
+        <Dialog onClose={this.handleClose} onClick={this.handleClose} open={open} classes={{ paper: classes.dialog }}>
+          <img src={tuto1} className={classes.dialogImage} />
+        </Dialog>
       </div>
     );
   }
