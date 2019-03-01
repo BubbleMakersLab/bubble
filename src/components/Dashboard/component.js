@@ -26,6 +26,7 @@ import { pathOr } from "ramda";
 
 import Chat from "../Chat";
 
+import bubbleLogo from "../../assets/images/bubble.png";
 import cardDoc from "../../assets/images/card-doc.png";
 import cardGestion from "../../assets/images/card-gestion.png";
 import cardVisio from "../../assets/images/card-visio.png";
@@ -94,6 +95,7 @@ export default class Dashboard extends React.Component {
             <IconButton color="inherit" aria-label="Open drawer" onClick={this.handleDrawerToggle} className={classes.menuButton}>
               <MenuIcon />
             </IconButton>
+            <img alt="User 1" src={bubbleLogo} className={classes.logo} />
             <Typography variant="h6" color="inherit" noWrap className={classes.typoTitle}>
               Design Strategy
             </Typography>

@@ -1,7 +1,6 @@
 import red from "@material-ui/core/colors/red";
 
 const drawerWidth = 240;
-const drawerColor = "#E2001A";
 
 export default theme => ({
   root: {
@@ -31,6 +30,10 @@ export default theme => ({
     margin: 3,
     width: 40
   },
+  logo: {
+    width: 40,
+    marginRight: "10px"
+  },
   menuButton: {
     marginRight: 20,
     [theme.breakpoints.up("sm")]: {
@@ -39,7 +42,7 @@ export default theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundolor: drawerColor
+    backgroundColor: "#E2001A"
   },
   content: {
     marginTop: "64px",
