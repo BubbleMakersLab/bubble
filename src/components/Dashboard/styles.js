@@ -59,7 +59,9 @@ export default theme => ({
   },
   card: {
     top: 50,
-    maxWidth: 400,
+    width: 447,
+    height: 559,
+    marginLeft: 10,
     paddingLeft: 2,
     display: "inline-block"
   },
@@ -100,8 +102,8 @@ export default theme => ({
     padding: "0 !important"
   },
   doc: {
-    width: "490px",
-    height: "420px",
+    width: "470px",
+    height: "380px",
     padding: 0
   },
   divVisio: {
