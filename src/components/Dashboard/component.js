@@ -24,12 +24,14 @@ import { any, objectOf, string } from "prop-types";
 import { parse } from "query-string";
 import { pathOr } from "ramda";
 
+import Dialog from "@material-ui/core/Dialog/Dialog";
 import Chat from "../Chat";
 
 import bubbleLogo from "../../assets/images/bubble.png";
 import cardDoc from "../../assets/images/card-doc.png";
 import cardGestion from "../../assets/images/card-gestion.png";
 import cardVisio from "../../assets/images/card-visio.png";
+import tuto1 from "../../assets/tuto1.PNG";
 import userOnline1 from "../../assets/images/user1-online.png";
 import userOnline2 from "../../assets/images/user2-online.png";
 import userOnline3 from "../../assets/images/user3-online.png";
@@ -54,7 +56,8 @@ export default class Dashboard extends React.Component {
 
     this.state = {
       username: pathOr("Anonymous", ["username"], parsed),
-      mobileOpen: false
+      mobileOpen: false,
+      open: true
     };
   }
 
@@ -62,17 +65,21 @@ export default class Dashboard extends React.Component {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
+  handleClose = () => {
+    this.setState(state => ({ open: false }));
+  };
+
   render() {
     const { classes, theme } = this.props;
-    const { username } = this.state;
+    const { username, open } = this.state;
 
     const drawer = (
       <div className={classes.toolbarLeft}>
-        <Divider />
+        <img alt="User 1" src={bubbleLogo} className={classes.logo} />
         <List>
           {["Projects"].map(text => (
             <ListItem button key={text}>
-              <ListItemText primary={text} />
+              {text}
             </ListItem>
           ))}
         </List>
@@ -80,7 +87,7 @@ export default class Dashboard extends React.Component {
         <List>
           {["Organizational Behavior", "Management Strategic", "Design Strategy"].map(text => (
             <ListItem button key={text}>
-              <ListItemText primary={text} />
+              {text}
             </ListItem>
           ))}
         </List>
@@ -89,13 +96,15 @@ export default class Dashboard extends React.Component {
 
     return (
       <div className={classes.root}>
+        <Dialog onClose={this.handleClose} onClick={this.handleClose} open={open} classes={{ paper: classes.dialog }}>
+          <img src={tuto1} className={classes.dialogImage} />
+        </Dialog>
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <IconButton color="inherit" aria-label="Open drawer" onClick={this.handleDrawerToggle} className={classes.menuButton}>
               <MenuIcon />
             </IconButton>
-            <img alt="User 1" src={bubbleLogo} className={classes.logo} />
             <Typography variant="h6" color="inherit" noWrap className={classes.typoTitle}>
               Design Strategy
             </Typography>

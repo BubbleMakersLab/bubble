@@ -1,9 +1,11 @@
 import { objectOf, string } from "prop-types";
 import { Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button/Button";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent/CardContent";
+import CardHeader from "@material-ui/core/CardHeader/CardHeader";
 import Input from "@material-ui/core/Input/Input";
 import React from "react";
-import Typography from "@material-ui/core/Typography/Typography";
 
 export default class Login extends React.Component {
   static propTypes = {
@@ -47,15 +49,23 @@ export default class Login extends React.Component {
 
     return (
       <div className={classes.login}>
-        <Typography variant="h2" gutterBottom>
-          Login
-        </Typography>
-        <div>
-          <Input type="text" onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
-          <Button className={classes.loginButton} variant="contained" onClick={this.handleClick}>
-            Go!
-          </Button>
-        </div>
+        <Card style={{ marginTop: "50px" }}>
+          <CardHeader title="Identifie toi" />
+
+          <CardContent style={{ display: "flex", flexDirection: "column" }}>
+            <Input
+              type="text"
+              onChange={this.handleChange}
+              onKeyPress={this.handleKeyPress}
+              placeholder="Nom d'utilisateur"
+              style={{ margin: "20px" }}
+            />
+            <Input type="text" placeholder="Mot de passe" style={{ margin: "20px" }} />
+            <Button className={classes.loginButton} variant="contained" onClick={this.handleClick} style={{ margin: "20px" }}>
+              Connexion
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     );
   }

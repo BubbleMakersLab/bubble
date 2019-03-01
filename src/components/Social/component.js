@@ -35,7 +35,6 @@ export default class Social extends React.Component {
 
     this.state = {
       username: pathOr("Anonymous", ["username"], parsed),
-      mobileOpen: false
     };
   }
 

@@ -17,7 +17,10 @@ export default theme => ({
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`
     },
-    backgroundColor: "#4A4A49"
+    backgroundColor: "#4A4A49",
+    height: "96px",
+    display: "flex",
+    justifyContent: "center"
   },
   typoTitle: {
     width: "200px"
@@ -31,7 +34,7 @@ export default theme => ({
     width: 40
   },
   logo: {
-    width: 40,
+    width: 239,
     marginRight: "10px"
   },
   menuButton: {
@@ -42,10 +45,14 @@ export default theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: "#E2001A"
+    backgroundColor: "#E2001A",
+    overflow: "hidden"
+  },
+  toolbarLeft: {
+    color: "white"
   },
   content: {
-    marginTop: "64px",
+    marginTop: "100px",
     display: "flex",
     width: "100%",
     justifyContent: "space-between"
@@ -100,11 +107,18 @@ export default theme => ({
   divVisio: {
     position: "fixed",
     right: 0,
-    top: "64px",
+    top: "96px",
     marginRight: "-8px"
   },
   visio: {
     height: "100vh",
     padding: 0
+  },
+  dialog: {
+    maxWidth: "none",
+    maxHeight: "none"
+  },
+  dialogImage: {
+    width: "800px"
   }
 });
