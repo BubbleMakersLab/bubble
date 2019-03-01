@@ -60,7 +60,7 @@ export default class Login extends React.Component {
               placeholder="Nom d'utilisateur"
               style={{ margin: "20px" }}
             />
-            <Input type="text" placeholder="Mot de passe" style={{ margin: "20px" }} />
+            <Input type="password" placeholder="Mot de passe" style={{ margin: "20px" }} />
             <Button className={classes.loginButton} variant="contained" onClick={this.handleClick} style={{ margin: "20px" }}>
               Connexion
             </Button>
